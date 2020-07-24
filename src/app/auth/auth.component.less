@@ -1,0 +1,48 @@
+@import "../../assets/styles/globals.less";
+
+.todo-auth {
+
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .todo-auth-form {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    input,
+    .todo-btn{
+      margin-bottom: @todo-margin-half;
+    }
+
+  }
+
+  @media screen and (min-width: @todo-breakpoint-sm) {
+    .todo-auth-form {
+      width: 90%;
+    }
+  }
+  @media screen and (min-width: @todo-breakpoint-md) {
+    .todo-auth-form {
+      width: 70%;
+    }
+  }
+  @media screen and (min-width: @todo-breakpoint-lg) {
+    .todo-auth-form {
+      width: 50%;
+    }
+  }
+  @media screen and (min-width: @todo-breakpoint-xl) {
+    .todo-auth-form {
+      width: 30%;
+    }
+  }
+}
