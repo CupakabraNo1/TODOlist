@@ -1,18 +1,29 @@
 import { NgModule } from '@angular/core';
-import { TodoComponent } from './todo.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGard } from '../auth/auth.guard';
+import { HomeComponent } from './home/home.component';
+import { TodoNotFoundComponent } from '../shared/components/todo-not-found/todo-not-found.component';
+import { UserComponent } from './user/user.component';
+import { TrashComponent } from './trash/trash.component';
 
 const routes: Routes = [
-  {path: "todo", component:TodoComponent, canActivate: [AuthGard]}
+  { path: "", redirectTo: "todo", pathMatch: "full" },
+  { path: "todo", component: HomeComponent },
+  { path: "user", component: UserComponent },
+  { path: "trash", component: TrashComponent },
+  { path: "**", component: TodoNotFoundComponent }
 ]
 
 @NgModule({
-  declarations: [TodoComponent],
+  declarations: [
+    HomeComponent,
+    UserComponent,
+    TrashComponent
+  ],
   imports: [
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
+
   ],
   exports: [
     RouterModule

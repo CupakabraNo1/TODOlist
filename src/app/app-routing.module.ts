@@ -1,25 +1,25 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
+import { TodoNotFoundComponent } from './shared/components/todo-not-found/todo-not-found.component';
+import { AuthGard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/home",
-    pathMatch: "full"
+    pathMatch: "full",
+    redirectTo: "todo"
   },
   {
-    path: "home",
-    component: HomeComponent,
-  },
-  {
-    path: "auth",
-    loadChildren: "./auth/auth.module#AuthModule",
+    path: "auth/:id",
+    loadChildren: () => import("./auth/auth.module").then(mod => mod.AuthModule),
   },
   {
     path: "todo",
-    loadChildren: "./todo/todo.module#TodoModule",
-  }
+    loadChildren: () => import("./todo/todo.module").then(mod => mod.TodoModule),
+    canActivate: [AuthGard]
+  },
+  { path: '**', component: TodoNotFoundComponent }
+
 ];
 
 @NgModule({

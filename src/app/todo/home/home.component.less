@@ -1,0 +1,104 @@
+@import "../../../assets/styles/globals.less";
+
+.todo-home {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .todo-home-categories,
+  .todo-home-todos {
+    position: relative;
+    display: inline-block;
+    margin: @todo-margin-half;
+    height: calc(100% - 50px);
+    background-color: lightblue;
+  }
+
+  .todo-home-categories {
+    background-color: lightgreen;
+  }
+}
+
+@media screen and (min-width: 0) {
+  .todo-home-categories,
+  .todo-home-todos {
+    width: calc(100% - @todo-margin-default);
+
+    .todo-home-todos-button {
+      position: absolute;
+      bottom: 25px;
+      right: 50%;
+      z-index: 10;
+    }
+    .todo-home-todos-button-x {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      z-index: 10;
+    }
+  }
+}
+
+@media screen and (min-width: @todo-breakpoint-sm) {
+  .todo-home-categories,
+  .todo-home-todos {
+    width: calc(100% - @todo-margin-default);
+
+    .todo-home-todos-button {
+      position: absolute;
+      bottom: 25px;
+      right: 50%;
+      z-index: 10;
+    }
+    .todo-home-todos-button-x {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      z-index: 10;
+    }
+  }
+}
+
+@media screen and (min-width: @todo-breakpoint-md) {
+  .todo-home-categories,
+  .todo-home-todos {
+    width: calc(100% - @todo-margin-default);
+
+    .todo-home-todos-button {
+      position: absolute;
+      bottom: 25px;
+      right: 50%;
+      z-index: 10;
+    }
+    .todo-home-todos-button-x {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      z-index: 10;
+    }
+  }
+}
+
+@media screen and (min-width: @todo-breakpoint-lg) {
+  .todo-home-categories {
+    width: calc(30% - @todo-margin-default);
+    .todo-home-todos-button-x {
+      display: none;
+    }
+  }
+  .todo-home-todos {
+    width: calc(70% - @todo-margin-default);
+  }
+}
+
+@media screen and (min-width: @todo-breakpoint-xl) {
+  .todo-home-categories {
+    width: calc(30% - @todo-margin-default);
+    .todo-home-todos-button-x {
+      display: none;
+    }
+  }
+  .todo-home-todos {
+    width: calc(70% - @todo-margin-default);
+  }
+}

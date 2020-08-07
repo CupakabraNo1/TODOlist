@@ -1,0 +1,18 @@
+<div class="todo-home">
+  <div class="todo-home-todos" *ngIf="showTodos">
+    <div
+      class="todo-home-todos-button"
+      *ngIf="!showCategories"
+      style="width: 25px; height: 25px; background-color: brown;"
+      (click)="switchCategories(true)"
+    ></div>
+  </div>
+  <div class="todo-home-categories" *ngIf="showCategories">
+    <div
+      class="todo-home-todos-button-x"
+      *ngIf="showCategories"
+      style="width: 25px; height: 25px; background-color: brown;"
+      (click)="switchCategories(false)"
+    ></div>
+  </div>
+</div>
