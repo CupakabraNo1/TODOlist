@@ -5,9 +5,11 @@ import { Routes, RouterModule} from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor.service';
+import { TodoNotFoundComponent } from '../shared/components/todo-not-found/todo-not-found.component';
 
 const routes: Routes = [
-  {path:'auth/:id', component: AuthComponent}
+  {path:'', component: AuthComponent},
+  {path:"**", component: TodoNotFoundComponent}
 ]
 
 @NgModule({

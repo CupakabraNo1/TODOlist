@@ -1,0 +1,9 @@
+<ul>
+    <li *ngIf="!categories || categories.length === 0">
+        {{ "no categories" | uppercase }}
+    </li>
+    <li *ngFor="let category of categories">
+        <span class="name">{{ category.name }}</span>
+        <span class="delete"><img src="assets/images/svg/image-trashcan-black.svg" (click)="deleteCategory(category.id)"></span>
+    </li>
+</ul>

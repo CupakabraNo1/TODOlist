@@ -2,11 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { TodoNotFoundComponent } from './components/todo-not-found/todo-not-found.component';
+import { HTTPInterceptor } from "./interceptors/http.interceptor"
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NavbarComponent,
+    FooterComponent,
+    TodoNotFoundComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -20,6 +27,12 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    NavbarComponent,
+    FooterComponent,
+    TodoNotFoundComponent
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptor, multi: true }
   ]
 })
 export class SharedModule { }

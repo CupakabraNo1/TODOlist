@@ -1,0 +1,139 @@
+@import "../../../../assets/styles/globals.less";
+
+.todo-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+
+  -webkit-box-shadow: 0px 2px 5px -1px rgba(168, 168, 168, 1);
+  -moz-box-shadow: 0px 2px 5px -1px rgba(168, 168, 168, 1);
+  box-shadow: 0px 2px 5px -1px rgba(168, 168, 168, 1);
+
+  //unselectable text
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+
+  //style
+  height: 50px;
+  background-color: @todo-color-blue-4;
+
+  //display
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+
+  //common to both part of navbar
+  .todo-navbar-brand,
+  .todo-navbar-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+    font-weight: bold;
+  }
+
+  .todo-navbar-brand {
+    justify-content: flex-start;
+    min-width: 15%;
+
+    * {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    span {
+      margin-left: 10px;
+    }
+
+    @media screen and (max-width: @todo-breakpoint-sm) {
+      #text {
+        display: none;
+      }
+    }
+  }
+
+  .todo-navbar-user {
+    justify-content: flex-end;
+    width: 100%;
+    min-width: 85%;
+
+    .todo-navbar-user-menu {
+      height: 100%;
+      min-width: 48px;
+      margin-right: @todo-margin-default;
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      span {
+        img {
+          outline: none;
+
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+    .active {
+      border-radius: 10px;
+      background: white;
+      transform: scale(1.2);
+
+      -webkit-box-shadow: inset 0px 6px 5px -1px rgba(168, 168, 168, 1);
+      -moz-box-shadow: inset 0px 6px 5px -1px rgba(168, 168, 168, 1);
+      box-shadow: inset 0px 6px 5px -1px rgba(168, 168, 168, 1);
+
+
+    }
+
+    .todo-navbar-user-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      height: 100%;
+
+      * {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+
+        height: 100%;
+        width: 100px;
+
+        &:hover {
+          opacity: 0.7;
+          cursor: pointer;
+        }
+
+        &:focus {
+          outline: none;
+          background: transparent;
+          border: 1px solid transparent;
+        }
+
+        &:active {
+          outline: none;
+          background: transparent;
+          border: 1px solid grey;
+        }
+      }
+      .todo-navbar-user-button-login {
+        background-color: @todo-color-blue-1;
+      }
+      .todo-navbar-user-button-register {
+        background-color: @todo-color-blue-2;
+      }
+    }
+  }
+}

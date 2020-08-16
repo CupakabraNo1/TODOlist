@@ -1,10 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { BehaviorSubject, throwError } from "rxjs";
+import { BehaviorSubject, throwError, Subscription } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { User } from "../models/user.model";
 import { environment } from "../../environments/environment";
 import { Router } from "@angular/router";
+import { UserService } from '../shared/services/user.service';
+import { UserDetails } from '../models/user-details.model';
 
 export interface ServerResponse {
   kind: string;
@@ -18,17 +20,19 @@ export interface ServerResponse {
 @Injectable({
   providedIn: "root",
 })
-export class AuthService {
+export class AuthService implements OnDestroy{
   public user = new BehaviorSubject<User>(null);
   private expiresIn: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  userDetailsSub : Subscription;
+
+  constructor(private http: HttpClient, private router: Router, private userService: UserService) { }
 
   register(email: string, password: string) {
     return this.http
       .post<ServerResponse>(
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
-          environment.firebaseAPIkey,
+        environment.firebaseAPIkey,
         {
           email: email,
           password: password,
@@ -42,7 +46,8 @@ export class AuthService {
             data.email,
             data.localId,
             data.idToken,
-            +data.expiresIn
+            +data.expiresIn,
+            true
           );
         })
       );
@@ -52,7 +57,7 @@ export class AuthService {
     return this.http
       .post<ServerResponse>(
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
-          environment.firebaseAPIkey,
+        environment.firebaseAPIkey,
         {
           key: environment.firebaseAPIkey,
           email: email,
@@ -67,7 +72,8 @@ export class AuthService {
             data.email,
             data.localId,
             data.idToken,
-            +data.expiresIn
+            +data.expiresIn,
+            false
           );
         })
       );
@@ -77,14 +83,23 @@ export class AuthService {
     email: string,
     password: string,
     idToken: string,
-    expiresIn: number
+    expiresIn: number,
+    register: boolean
   ) {
     const expires = new Date(new Date().getTime() + +expiresIn * 1000);
     const user = new User(email, password, idToken, expires);
     this.user.next(user);
+    // if(register){
+    //   this.userDetailsSub = this.userService.addNewUser(new UserDetails(user.id, null,null,null,null,null)).subscribe((data:UserDetails)=>{
+    //     this.userService.userData.next(data);
+    //   })
+    // }else{
+    //   this.userDetailsSub = this.userService.getUserData(user.id).subscribe((data:UserDetails)=>{
+    //     this.userService.userData.next(data);
+    //   })
+    // }
     localStorage.setItem("user", JSON.stringify(user));
     this.autoLoguout(expiresIn * 1000);
-    console.log(this.user);
   }
 
   logout() {
@@ -134,6 +149,9 @@ export class AuthService {
     );
     if (user.token) {
       this.user.next(user);
+      // this.userDetailsSub = this.userService.getUserData(user.id).subscribe((data:UserDetails)=>{
+      //   this.userService.userData.next(data);
+      // })
       this.autoLoguout(
         new Date(user._tokenExpirationDate).getTime() - new Date().getTime()
       );
@@ -144,5 +162,9 @@ export class AuthService {
     this.expiresIn = setTimeout(() => {
       this.logout();
     }, expires);
+  }
+
+  ngOnDestroy(){
+    this.userDetailsSub.unsubscribe();
   }
 }

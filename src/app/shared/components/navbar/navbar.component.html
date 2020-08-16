@@ -1,0 +1,43 @@
+<div class="todo-navbar">
+  <div class="todo-navbar-brand">
+    <span
+      ><img
+        src="../../assets/images/logo.png"
+        width="30"
+        height="30"
+        alt="TODOlist"
+        id="logo"
+      />
+    </span>
+    <span id="text">TODOlist</span>
+  </div>
+
+  <div class="todo-navbar-user" *ngIf="!isAuthenticated">
+    <div class="todo-navbar-user-buttons">
+      <span class="todo-navbar-user-button-login" [routerLink]="['/auth', 0]">
+        Login
+      </span>
+      <span
+        class="todo-navbar-user-button-register"
+        [routerLink]="['/auth', 1]"
+      >
+        Register
+      </span>
+    </div>
+  </div>
+  <div class="todo-navbar-user" *ngIf="isAuthenticated">
+     <div class="todo-navbar-user-menu" routerLinkActive="active">
+        <span><img src="assets/images/svg/image-todo-black.svg" [routerLink]="['todo/todo']" data-toggle="tooltip" title="To Do">
+      </span>
+    </div>
+     <div class="todo-navbar-user-menu" routerLinkActive="active">
+        <span><img src="assets/images/svg/image-trashcan-black.svg" [routerLink]="['todo/trash']" data-toggle="tooltip" title="Trash"></span>
+    </div>
+     <div class="todo-navbar-user-menu" routerLinkActive="active">
+        <span><img src="assets/images/svg/image-user-black.svg" [routerLink]="['todo/user']" data-toggle="tooltip" title="User"></span>
+    </div>
+    <div class="todo-navbar-user-menu" (click)="logout()">
+      <span><img src="assets/images/svg/image-logout-red.svg" data-toggle="tooltip" title="Logout"></span>
+    </div>
+  </div>
+</div>
