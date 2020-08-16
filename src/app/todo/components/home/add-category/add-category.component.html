@@ -1,0 +1,6 @@
+<div class="todo-add-category">
+    <form (ngSubmit)="addNewCategory(addNewForm)" #addNewForm="ngForm">
+        <input class="todo-input todo-add-category-name" type="text" name="name" ngModel>
+        <button class="todo-btn" type="submit">Add</button>
+    </form>
+</div>

@@ -89,15 +89,15 @@ export class AuthService implements OnDestroy{
     const expires = new Date(new Date().getTime() + +expiresIn * 1000);
     const user = new User(email, password, idToken, expires);
     this.user.next(user);
-    if(register){
-      this.userDetailsSub = this.userService.addNewUser(new UserDetails(user.id, null,null,null,null,null)).subscribe((data:UserDetails)=>{
-        this.userService.userData.next(data);
-      })
-    }else{
-      this.userDetailsSub = this.userService.getUserData(user.id).subscribe((data:UserDetails)=>{
-        this.userService.userData.next(data);
-      })
-    }
+    // if(register){
+    //   this.userDetailsSub = this.userService.addNewUser(new UserDetails(user.id, null,null,null,null,null)).subscribe((data:UserDetails)=>{
+    //     this.userService.userData.next(data);
+    //   })
+    // }else{
+    //   this.userDetailsSub = this.userService.getUserData(user.id).subscribe((data:UserDetails)=>{
+    //     this.userService.userData.next(data);
+    //   })
+    // }
     localStorage.setItem("user", JSON.stringify(user));
     this.autoLoguout(expiresIn * 1000);
   }
@@ -149,9 +149,9 @@ export class AuthService implements OnDestroy{
     );
     if (user.token) {
       this.user.next(user);
-      this.userDetailsSub = this.userService.getUserData(user.id).subscribe((data:UserDetails)=>{
-        this.userService.userData.next(data);
-      })
+      // this.userDetailsSub = this.userService.getUserData(user.id).subscribe((data:UserDetails)=>{
+      //   this.userService.userData.next(data);
+      // })
       this.autoLoguout(
         new Date(user._tokenExpirationDate).getTime() - new Date().getTime()
       );

@@ -1,18 +1,24 @@
 <div class="todo-home">
-  <div class="todo-home-todos" *ngIf="showTodos">
-    <div
-      class="todo-home-todos-button"
-      *ngIf="!showCategories"
-      style="width: 25px; height: 25px; background-color: brown;"
-      (click)="switchCategories(true)"
-    ></div>
-  </div>
-  <div class="todo-home-categories" *ngIf="showCategories">
-    <div
-      class="todo-home-todos-button-x"
-      *ngIf="showCategories"
-      style="width: 25px; height: 25px; background-color: brown;"
-      (click)="switchCategories(false)"
-    ></div>
-  </div>
+    <div class="todo-home-todos" *ngIf="showTodos">
+        <div class="todo-home-todos-button" *ngIf="!showCategories" (click)="switchCategories(true)">
+            {{ "categories" | uppercase }}
+        </div>
+        <h3>{{ "TODO" | uppercase }}</h3>
+        <div class="todo-home-todos-list">
+            <app-todo-list [user]="user" [todoList]="todoList" [categories]="categories" (changed)="updateCategory($event)" (lastTodoEmit)="updateLastTodo($event)"></app-todo-list>
+        </div>
+        <div class="todo-home-todos-new">
+            <app-add-new [categories]="categories" [lastTodo]="lastIndexTodo" (added)="getTodos()"></app-add-new>
+        </div>
+    </div>
+    <div class="todo-home-categories" *ngIf="showCategories">
+        <div class="todo-home-categories-button-x" *ngIf="showCategories" (click)="switchCategories(false)"></div>
+        <h3>{{ "Categories" | uppercase }}</h3>
+        <div class="todo-home-categories-add">
+            <app-add-category [lastIndex]="lastIndex" (added)="getCategories()"></app-add-category>
+        </div>
+        <div class="todo-home-categories-list">
+            <app-category-list [categories]="categories" (deleted)="getCategories()"></app-category-list>
+        </div>
+    </div>
 </div>

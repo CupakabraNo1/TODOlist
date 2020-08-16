@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: "",
     pathMatch: "full",
-    redirectTo: "todo"
+    redirectTo: "/todo"
   },
   {
     path: "auth/:id",

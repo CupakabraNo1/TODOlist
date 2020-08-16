@@ -1,0 +1,69 @@
+@import '../../../../../assets/styles/globals.less';
+
+.todo-add-new {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100px;
+
+  span {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 5px;
+
+    input,
+    select,
+    button {
+      min-height: 40px;
+      width: 100%;
+    }
+
+    button{
+      margin:4px 0;
+    }
+  }
+}
+@media screen and (min-width: 0) {
+  .todo-add-new {
+    span {
+      width: calc(100% - 5px);
+    }
+  }
+}
+
+@media screen and (min-width: @todo-breakpoint-sm) {
+  .todo-add-new {
+    span {
+      width: calc(50% - 5px);
+    }
+  }
+}
+
+@media screen and (min-width: @todo-breakpoint-md) {
+  .todo-add-new {
+    span {
+      width: calc(33.3% - 5px);
+
+    }
+  }
+}
+
+@media screen and (min-width: @todo-breakpoint-lg) {
+  .todo-add-new {
+    span {
+      width: calc(25% - 5px);
+    }
+  }
+}
+
+@media screen and (min-width: @todo-breakpoint-xl) {
+  .todo-add-new {
+    span {
+      width: calc(20% - 5px);
+
+
+    }
+  }
+}

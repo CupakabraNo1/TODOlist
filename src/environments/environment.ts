@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  firebaseAPIkey: 'AIzaSyDaJp3VpoyP2-5OmSxZM5cPn0J5lzso3GQ'
+  firebaseAPIkey: 'AIzaSyDaJp3VpoyP2-5OmSxZM5cPn0J5lzso3GQ',
+  REST_ENDPOINT: 'https://todolist-19e8d.firebaseio.com'
 };
 
 /*
