@@ -1,64 +1,35 @@
 <div class="todo-auth">
-  <form
-    class="todo-auth-form"
-    #authForm="ngForm"
-    (ngSubmit)="onSubmit(authForm)"
-  >
-    <span>
-
+    <div *ngIf="error" class="todo-auth-alert-danger">
+        {{ error }}
+        <button type="button" class="close" aria-label="Close" (click)="error = null" style="margin-top:5px; margin-right: 10px">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <form class="todo-auth-form" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+        <span>
       <img
-      class="mb-4"
-      src="../../assets/images/logo.png"
-      style="border-radius: 10px;"
-      alt=""
-      width="72"
-      height="72"
+        class="mb-4"
+        src="../../assets/images/logo.png"
+        style="border-radius: 10px"
+        alt=""
+        width="72"
+        height="72"
       />
     </span>
-    <!--
 
-      TODO: implementirati tostere
 
-      <div *ngIf="error" class="alert alert-danger" >{{error}}
-      <button type="button" class="close" aria-label="Close" (click)="error = null">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div> -->
 
-    <div *ngIf="register">
-      <h1>Please register</h1>
-    </div>
-    <div *ngIf="!register">
-      <h1>Please login</h1>
-    </div>
-    <input
-      type="email"
-      id="inputEmail"
-      class="todo-input"
-      placeholder="Email address"
-      ngModel
-      name = 'email'
-      required
-      email
-      />
-      <input
-      type="password"
-      id="inputPassword"
-      class="todo-input"
-
-      placeholder="Password"
-      ngModel
-      name = 'password'
-      minlength = 6
-      required
-    />
-    <button
-      class="todo-btn"
-      type="submit"
-      [disabled]="!authForm.valid"
-    >
+        <div *ngIf="register">
+            <h1>Please register</h1>
+        </div>
+        <div *ngIf="!register">
+            <h1>Please login</h1>
+        </div>
+        <input type="email" id="inputEmail" class="todo-input" placeholder="Email address" ngModel name="email" required email />
+        <input type="password" id="inputPassword" class="todo-input" placeholder="Password" ngModel name="password" minlength="6" required />
+        <button class="todo-btn" type="submit" [disabled]="!authForm.valid">
       <span *ngIf="!register">Login</span>
       <span *ngIf="register">Register</span>
     </button>
-  </form>
+    </form>
 </div>

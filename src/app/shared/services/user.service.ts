@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserDetails } from 'src/app/models/user-details.model';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class UserService {
 
   public addNewUser(user: UserDetails) {
     this.userId = user.id;
-    return this.http.patch("users.json?", {
+    return this.http.patch("/users.json", {
       [user.id]: user
     });
   }

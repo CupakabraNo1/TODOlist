@@ -2,12 +2,12 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angu
 import { Category } from 'src/app/models/category.model';
 import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { Subscription } from 'rxjs';
-import { emit } from 'process';
 
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.less']
+
 })
 export class CategoryListComponent implements OnInit, OnDestroy {
 

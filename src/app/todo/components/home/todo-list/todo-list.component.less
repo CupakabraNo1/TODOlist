@@ -8,7 +8,7 @@ ul {
   li {
     position: relative;
 
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     list-style-type: none;
     background-color: @todo-color-gray;
     border-radius: @todo-border-radius;
@@ -34,7 +34,6 @@ ul {
     .todo-home-element-card {
       display: inline;
       min-height: 50px;
-      width: 100%;
 
       display: flex;
       flex-wrap: wrap;
@@ -106,7 +105,6 @@ ul {
           display: flex;
           flex-direction: row;
           span {
-            width: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -135,6 +133,12 @@ ul {
 }
 @media screen and (min-width: 0) {
   .todo-home-element-card {
+    width: 70%;
+    .text-span{
+      width: calc(100% - 5px);
+      line-break: auto;
+      border-bottom: 1px solid rgba(122, 217, 245, 1) ;
+    }
     span {
       width: calc(100% - 5px);
     }
@@ -143,6 +147,10 @@ ul {
 
 @media screen and (min-width: @todo-breakpoint-sm) {
   .todo-home-element-card {
+    width: 80%;
+    .text-span{
+      width: calc(100% - 5px);
+    }
     span {
       width: calc(50% - 5px);
     }
@@ -151,24 +159,31 @@ ul {
 
 @media screen and (min-width: @todo-breakpoint-md) {
   .todo-home-element-card {
+    width: 90%;
+    .text-span{
+
+      width: calc(100% - 5px);
+    }
     span {
-      width: calc(33.3% - 5px);
+      width: calc(50% - 5px);
     }
   }
 }
 
 @media screen and (min-width: @todo-breakpoint-lg) {
   .todo-home-element-card {
+    width: 100%;
     span {
-      width: calc(25% - 5px);
+      width: calc(50% - 5px);
     }
   }
 }
 
 @media screen and (min-width: @todo-breakpoint-xl) {
   .todo-home-element-card {
+    width: 100%;
     span {
-      width: calc(20% - 5px);
+      width: calc(25% - 5px);
     }
   }
 }

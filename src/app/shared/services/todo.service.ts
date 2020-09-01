@@ -28,5 +28,4 @@ export class TodoService {
     return this.http.patch(this.API_PREFIX + this.user.userId + ".json", {[todo.id]: todo});
   }
 
-
 }
