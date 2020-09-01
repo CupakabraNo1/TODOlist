@@ -1,1 +1,18 @@
-<p>user works!</p>
+<div class="todo-user">
+    <div class="todo-user-data">
+        <h3>{{ "user data" | uppercase }}</h3>
+        <div class="todo-user-data-inputs" *ngFor="let data of headers">
+            <label for="{{ COMPONENT_ID }}{{ data.VARIABLE }}">{{ data.VALUE | uppercase }}:
+      </label>
+            <input type="text" class="todo-input" [readonly]="editMode" [(ngModel)]="userDetails[data.VARIABLE]" id="{{ COMPONENT_ID }}{{ data.VARIABLE }}" *ngIf="userDetails" />
+        </div>
+        <div class="todo-user-buttons">
+            <button class="todo-btn" [disabled]="!editMode" (click)="changeEdit()">
+        Edit
+      </button>
+            <button class="todo-btn" [disabled]="editMode" (click)="saveEdited()">
+        Save
+      </button>
+        </div>
+    </div>
+</div>

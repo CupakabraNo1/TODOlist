@@ -94,6 +94,23 @@
     border: none !important;
   }
 }
+.todo-btn-delete {
+  background-color: lightcoral !important;
+  border: 2px solid red !important;
+  color: white;
+  &:hover {
+    background: linear-gradient(to bottom, red 15%, #ffffff 100%);
+    background-color: #f6f6f6;
+  }
+  &:disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    pointer-events: none;
+    border: 1px solid #999999 !important;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+  }
+}
 
 .todo-input {
   padding: 5px;

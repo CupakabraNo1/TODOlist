@@ -2,16 +2,16 @@
     <li *ngIf="!todoList || todoList.length === 0">
         <span class="todo-center-verticaly"><span>{{ "no data" | uppercase }}</span></span>
     </li>
-    <li *ngFor="let todo of todoList">
+    <li *ngFor="let todo of todoList | sort: 'priority':true">
         <span class="todo-input todo-home-element-check" [ngClass]="{ checked: todo.status }" (click)="completeTask(todo)">
     </span>
         <div class="todo-home-element-card">
-            <span class="todo-center-verticaly">
+            <span class="todo-center-verticaly text-span">
         <input
           type="text"
           class="todo-input"
           *ngIf="edit.idForEdit === todo.id && edit.edit"
-          [(ngModel)] = "todo.todo"
+          [(ngModel)]="todo.todo"
         />
         <span
           *ngIf="!(edit.idForEdit === todo.id && edit.edit)"
@@ -32,7 +32,7 @@
             [(ngModel)]="todo.date"
           />
           <span *ngIf="!(edit.idForEdit === todo.id && edit.edit)">
-            {{ todo.date }}</span
+            {{ todo.date === "" ? "N/A" : todo.date }}</span
           >
         </span>
             </span>
@@ -51,18 +51,19 @@
             <option
               *ngFor="let item of common.counter(5); let i = index"
               [value]="i + 1"
-              ><span
-                *ngFor="let star of common.counter(i + 1)"
-              >*</span
-            ></option>
-
-          </select>
-          <span *ngIf="!(edit.idForEdit === todo.id && edit.edit)">
+            >
+              <span *ngFor="let star of common.counter(i + 1)">*</span>
+            </option>
+            </select>
+            <span *ngIf="!(edit.idForEdit === todo.id && edit.edit)">
             <span
-              style="height: 100%;"
+              style="height: 100%"
               *ngFor="let star of common.counter(todo.priority)"
               ><img src="assets/images/svg/image-star-blue.svg"
             /></span>
+            <span *ngIf="common.counter(todo.priority).length == 0">
+              {{ "no priority" | uppercase }}
+            </span>
             </span>
             </span>
             </span>
@@ -79,26 +80,38 @@
             [disabled]="todo.status"
           >
             <option [value]="-1">{{ "no category" | uppercase }}</option>
-            <option *ngFor="let category of categories" [value]="category.id">{{
-              category.name
-            }}</option>
+            <option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </option>
           </select>
-          <span *ngIf="categories && categories.length > 0 && !(edit.idForEdit === todo.id && edit.edit) ">
-            {{ getCategoryName(todo.category) | uppercase}}</span
+          <span
+            *ngIf="
+              categories &&
+              categories.length > 0 &&
+              !(edit.idForEdit === todo.id && edit.edit)
+            "
+          >
+            {{ getCategoryName(todo.category) | uppercase }}</span
           >
         </span>
             </span>
             <span class="todo-center-verticaly">
         <span class="todo-home-element-edit">
           <button
-            *ngIf="!(edit.idForEdit === todo.id && edit.edit)"
+            *ngIf="!todo.status && !(edit.idForEdit === todo.id && edit.edit)"
             class="todo-btn"
-            [disabled]="
-              todo.status || (edit.idForEdit !== todo.id && edit.edit)
-            "
+            [disabled]="edit.idForEdit !== todo.id && edit.edit"
             (click)="editTask(todo)"
           >
             Edit
+          </button>
+          <button
+            *ngIf="todo.status && !(edit.idForEdit === todo.id && edit.edit)"
+            class="todo-btn todo-btn-delete"
+            [disabled]="edit.idForEdit !== todo.id && edit.edit"
+            (click)="deleteTask(todo)"
+          >
+            Delete
           </button>
           <button
             *ngIf="edit.idForEdit === todo.id && edit.edit"

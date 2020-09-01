@@ -6,13 +6,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TodoNotFoundComponent } from './components/todo-not-found/todo-not-found.component';
-import { HTTPInterceptor } from "./interceptors/http.interceptor"
+import { HTTPInterceptor } from "./interceptors/http.interceptor";
+import { SortPipe } from './pipes/sort.pipe'
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
-    TodoNotFoundComponent
+    TodoNotFoundComponent,
+    SortPipe
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { HTTPInterceptor } from "./interceptors/http.interceptor"
     RouterModule,
     NavbarComponent,
     FooterComponent,
-    TodoNotFoundComponent
+    TodoNotFoundComponent,
+    SortPipe
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptor, multi: true }

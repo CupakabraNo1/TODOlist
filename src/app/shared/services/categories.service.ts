@@ -27,7 +27,7 @@ export class CategoriesService {
     return this.http.delete(this.API_PREFIX + this.userService.userId + "/" + id + ".json");
   }
 
-  public updateCategory(id: number, number: number){
-    return this.http.patch(this.API_PREFIX+this.userService.userId+"/"+id+".json", {"number":number});
-  }
+  // public updateCategory(id: number, number: number){
+  //   return this.http.patch(this.API_PREFIX+this.userService.userId+"/"+id+".json", {"number":number});
+  // }
 }

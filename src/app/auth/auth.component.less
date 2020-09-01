@@ -3,7 +3,7 @@
 .todo-auth {
 
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -23,6 +23,17 @@
       margin-bottom: @todo-margin-half;
     }
 
+  }
+
+  .todo-auth-alert-danger{
+    padding: 0 10px;
+    background-color: lightgoldenrodyellow;
+    color: darkgoldenrod;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 50px;
+    line-height: 50px;
   }
 
   @media screen and (min-width: @todo-breakpoint-sm) {

@@ -3,9 +3,9 @@
         <div class="todo-home-todos-button" *ngIf="!showCategories" (click)="switchCategories(true)">
             {{ "categories" | uppercase }}
         </div>
-        <h3>{{ "TODO" | uppercase }}</h3>
+        <h3>{{ "todo" | uppercase }}</h3>
         <div class="todo-home-todos-list">
-            <app-todo-list [user]="user" [todoList]="todoList" [categories]="categories" (changed)="updateCategory($event)" (lastTodoEmit)="updateLastTodo($event)"></app-todo-list>
+            <app-todo-list [user]="user" [todoList]="todoList" [categories]="categories" (changed)="getTodos()" (lastTodoEmit)="updateLastTodo($event)"></app-todo-list>
         </div>
         <div class="todo-home-todos-new">
             <app-add-new [categories]="categories" [lastTodo]="lastIndexTodo" (added)="getTodos()"></app-add-new>
@@ -13,7 +13,7 @@
     </div>
     <div class="todo-home-categories" *ngIf="showCategories">
         <div class="todo-home-categories-button-x" *ngIf="showCategories" (click)="switchCategories(false)"></div>
-        <h3>{{ "Categories" | uppercase }}</h3>
+        <h3>{{ "categories" | uppercase }}</h3>
         <div class="todo-home-categories-add">
             <app-add-category [lastIndex]="lastIndex" (added)="getCategories()"></app-add-category>
         </div>
